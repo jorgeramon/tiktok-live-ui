@@ -18,5 +18,6 @@ jobs:
             git pull origin master
             yarn install
             yarn build
-            rm -rf /var/www/html/tiktok-live-ui
-            cp -r dist /var/www/html/tiktok-live-ui
+            cp ${{ secrets.ENV_FOLDER }}/tiktok-live-ui .env
+            rm -rf ${{ secrets.DEPLOY_FOLDER }}/tiktok-live-ui
+            cp -r dist ${{ secrets.DEPLOY_FOLDER }}/tiktok-live-ui
