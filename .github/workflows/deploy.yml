@@ -18,3 +18,5 @@ jobs:
             git pull origin master
             yarn install
             yarn build
+            rm -rf /var/www/html/tiktok-live-ui
+            cp -r dist /var/www/html/tiktok-live-ui
