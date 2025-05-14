@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useSocketEvent } from "socket.io-react-hook";
-import { SocketContext } from "../../contexts/socket";
 import { OutputSocketEvent } from "../../enums/event";
+import { SocketContext } from "../contexts/socket";
 
 export function useCompleteRequestEvent(): Function {
     const { socket } = useContext(SocketContext);

@@ -27,13 +27,13 @@ export function PendingTable() {
                 {
                     requests
                         .filter(request => !request.completed)
-                        .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
+                        .sort((r1, r2) => r2.requested_at.getTime() - r1.requested_at.getTime())
                         .map(request => (
                             <tr key={request._id}>
                                 <td>{request.request}</td>
                                 <td>{request.user_username}</td>
                                 <td>{request.user_nickname}</td>
-                                <td><ReactTimeAgo date={new Date(request.createdAt)} /></td>
+                                <td><ReactTimeAgo date={request.requested_at} /></td>
                                 <td>
                                     <Stack direction="horizontal" gap={3}>
                                         <Button variant="success" onClick={() => onComplete(request._id)}><i className="bi bi-check"></i></Button>

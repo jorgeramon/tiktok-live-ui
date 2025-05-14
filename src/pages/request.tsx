@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import { Stack } from "react-bootstrap";
+import { CompletedTable } from "../components/completed-table";
 import { PendingTable } from "../components/pending-table";
 import { Status } from "../components/status";
 import { useGetRequestsEvent } from "../events/output/get-requests";
@@ -22,9 +24,18 @@ export function RequestPage() {
     }, [get_status]);
 
     return (
-        <>
+        <Stack className="p-2">
             <Status />
-            <PendingTable />
-        </>
+
+            <Stack className="mt-3">
+                <h2 className="text-center">Pendientes</h2>
+                <PendingTable />
+            </Stack>
+
+            <Stack className="mt-3">
+                <h2 className="text-center">Completadas</h2>
+                <CompletedTable />
+            </Stack>
+        </Stack>
     )
 }

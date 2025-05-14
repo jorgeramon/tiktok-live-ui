@@ -15,11 +15,11 @@ export function reducer(state: IRequest[], action: IAction): IRequest[] {
 
         case RequestsAction.UPDATE:
             {
-                const { request_id, new_request } = action.data as any;
-                const request: IRequest | undefined = state.find(request => request._id === request_id);
+                const { _id, request: new_request } = action.data as IRequest;
+                const request: IRequest | undefined = state.find(request => request._id === _id);
 
                 if (request) {
-                    request.request = new_request;
+                    request.request = new_request
                 }
 
                 return [...state];
@@ -27,11 +27,12 @@ export function reducer(state: IRequest[], action: IAction): IRequest[] {
 
         case RequestsAction.COMPLETE:
             {
-                const request_id = action.data as string;
-                const request: IRequest | undefined = state.find(request => request._id === request_id);
+                const { _id, completed_at } = action.data as IRequest;
+                const request: IRequest | undefined = state.find(request => request._id === _id);
 
                 if (request) {
                     request.completed = true;
+                    request.completed_at = completed_at;
                 }
 
                 return [...state];

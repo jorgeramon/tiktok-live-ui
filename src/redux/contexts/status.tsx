@@ -7,7 +7,7 @@ export const StatusContext = createContext<IContextState<boolean>>({
     dispatch: () => { }
 });
 
-export function RequestsProvider({ children }: PropsWithChildren) {
+export function StatusProvider({ children }: PropsWithChildren) {
     const [state, dispatch] = useReducer(reducer, initial_state);
 
     return (

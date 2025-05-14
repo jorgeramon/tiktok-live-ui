@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
 import { IoProvider } from "socket.io-react-hook";
-import { SocketContextProvider } from "../contexts/socket";
+import { SocketContextProvider } from "../events/contexts/socket";
 
 export function AuthLayout() {
     return (

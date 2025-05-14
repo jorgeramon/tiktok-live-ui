@@ -17,25 +17,25 @@ export function useRequests() {
     const request_completed = useRequestCompleted(account_id!);
 
     useEffect(() => {
-        if (get_requests) {
+        if (get_requests !== null) {
             dispatch({ type: RequestsAction.REPLACE, data: get_requests });
         }
     }, [get_requests]);
 
     useEffect(() => {
-        if (request_created) {
+        if (request_created !== null) {
             dispatch({ type: RequestsAction.ADD, data: request_created });
         }
     }, [request_created]);
 
     useEffect(() => {
-        if (request_updated) {
+        if (request_updated !== null) {
             dispatch({ type: RequestsAction.UPDATE, data: request_updated });
         }
     }, [request_updated]);
 
     useEffect(() => {
-        if (request_completed) {
+        if (request_completed !== null) {
             dispatch({ type: RequestsAction.COMPLETE, data: request_completed });
         }
     }, [request_completed]);

@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { useParams } from "react-router";
 import { useGetStatus } from "../../events/input/get-status";
-import { RequestsAction } from "../action";
+import { StatusAction } from "../action";
 import { StatusContext } from "../contexts/status";
 
 export function useStatus() {
@@ -11,8 +11,8 @@ export function useStatus() {
     const get_status = useGetStatus(account_id!);
 
     useEffect(() => {
-        if (get_status) {
-            dispatch({ type: RequestsAction.REPLACE, data: get_status });
+        if (get_status !== null) {
+            dispatch({ type: StatusAction.REPLACE, data: get_status.is_online });
         }
     }, [get_status]);
 
