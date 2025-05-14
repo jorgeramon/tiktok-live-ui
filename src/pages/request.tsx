@@ -1,6 +1,7 @@
 import CompletedTable from '@/components/completed-table';
 import PendingTable from '@/components/pending-table';
 import Status from '@/components/status';
+import SocketProvider from '@/contexts/socket';
 import { useGetRequestsEvent } from '@/events/output/get-requests';
 import { useGetStatusEvent } from '@/events/output/get-status';
 import { RequestsProvider } from '@/redux/contexts/requests';
@@ -42,9 +43,11 @@ function Page() {
 }
 
 export default () => (
-  <RequestsProvider>
-    <StatusProvider>
-      <Page />
-    </StatusProvider>
-  </RequestsProvider>
+  <SocketProvider>
+    <RequestsProvider>
+      <StatusProvider>
+        <Page />
+      </StatusProvider>
+    </RequestsProvider>
+  </SocketProvider>
 );

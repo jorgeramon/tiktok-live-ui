@@ -1,4 +1,5 @@
 import RequestSelected from '@/components/request-selected';
+import SocketProvider from '@/contexts/socket';
 import { useGetRequestsEvent } from '@/events/output/get-requests';
 import { RequestsProvider } from '@/redux/contexts/requests';
 import { useEffect } from 'react';
@@ -21,7 +22,9 @@ function Page() {
 }
 
 export default () => (
-  <RequestsProvider>
-    <Page />
-  </RequestsProvider>
+  <SocketProvider>
+    <RequestsProvider>
+      <Page />
+    </RequestsProvider>
+  </SocketProvider>
 );
