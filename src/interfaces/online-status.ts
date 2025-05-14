@@ -1,3 +1,3 @@
 export interface IOnlineStatus {
-    is_online: boolean;
+  is_online: boolean;
 }

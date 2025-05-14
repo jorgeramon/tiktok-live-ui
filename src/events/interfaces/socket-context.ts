@@ -1,6 +1,5 @@
-
 export interface ISocketContext {
-    connected: boolean;
-    socket: any;
-    error: any;
+  connected: boolean;
+  socket: any;
+  error: any;
 }

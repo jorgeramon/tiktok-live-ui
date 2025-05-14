@@ -1,5 +1,3 @@
-export function HomePage() {
-    return (
-        <h1>Hello World (Home)</h1>
-    );
-}
+export default () => (
+    <h1>Hello World</h1>
+);

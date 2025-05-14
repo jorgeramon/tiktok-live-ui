@@ -1,18 +1,12 @@
-import { BrowserRouter, Route, Routes } from "react-router";
-import { AuthLayout } from "./layouts/auth";
-import { RequestPageLayout } from "./layouts/request";
-import { HomePage } from "./pages/home";
-import { RequestPage } from "./pages/request";
+import HomePage from '@/pages/home';
+import RequestPage from '@/pages/request';
+import { BrowserRouter, Route, Routes } from 'react-router';
 
-export function Router() {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path=":account_id" element={<AuthLayout />}>
-                    <Route path="requests" element={<RequestPageLayout><RequestPage /></RequestPageLayout>} />
-                </Route>
-            </Routes>
-        </BrowserRouter>
-    );
-}
+export default () => (
+  <BrowserRouter>
+    <Routes>
+      <Route index path="/" element={<HomePage />} />
+      <Route path=":account_id/requests" element={<RequestPage />} />
+    </Routes>
+  </BrowserRouter>
+);

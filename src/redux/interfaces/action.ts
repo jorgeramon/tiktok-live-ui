@@ -1,4 +1,4 @@
 export interface IAction {
-    type: unknown;
-    data: unknown;
+  type: unknown;
+  data: unknown;
 }

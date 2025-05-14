@@ -1,7 +1,10 @@
-import { Router } from './router';
+import SocketProvider from '@/contexts/socket';
+import Router from '@/router';
 
 export default function App() {
-    return (
-        <Router />
-    );
+  return (
+    <SocketProvider>
+      <Router />
+    </SocketProvider>
+  );
 }

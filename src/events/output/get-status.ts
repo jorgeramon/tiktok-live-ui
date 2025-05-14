@@ -1,11 +1,11 @@
-import { useContext } from "react";
-import { useSocketEvent } from "socket.io-react-hook";
-import { OutputSocketEvent } from "../../enums/event";
-import { SocketContext } from "../contexts/socket";
+import { SocketContext } from '@/contexts/socket';
+import { OutputSocketEvent } from '@/enums/event';
+import { useContext } from 'react';
+import { useSocketEvent } from 'socket.io-react-hook';
 
 export function useGetStatusEvent(): Function {
-    const { socket } = useContext(SocketContext);
-    const { sendMessage } = useSocketEvent(socket, OutputSocketEvent.GET_STATUS);
+  const { socket } = useContext(SocketContext);
+  const { sendMessage } = useSocketEvent(socket, OutputSocketEvent.GET_STATUS);
 
-    return sendMessage;
+  return sendMessage;
 }
