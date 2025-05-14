@@ -34,8 +34,8 @@ export default function () {
           .filter((request) => !request.completed)
           .sort(
             (r1, r2) =>
-              new Date(r2.requested_at).getTime() -
-              new Date(r1.requested_at).getTime()
+              new Date(r1.requested_at).getTime() -
+              new Date(r2.requested_at).getTime()
           )
           .map((request) => (
             <tr key={request._id}>
