@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, useEffect, useState } from "react";
+import { createContext, PropsWithChildren, useEffect } from "react";
 import { useParams } from "react-router";
 import { useSocket } from "socket.io-react-hook";
 import Toastify from 'toastify-js';
@@ -13,15 +13,11 @@ export const SocketContext = createContext<ISocketContext>({
 export function SocketContextProvider({ children }: PropsWithChildren) {
     const { account_id } = useParams();
     const { error, socket, connected } = useSocket(import.meta.env.VITE_WS, { auth: { account_id } });
-    const [error_state, setError] = useState(error);
-    const [connected_state, setConnected] = useState(connected);
 
     useEffect(() => {
         Toastify({
             text: connected ? 'Conectado al servidor' : 'Desconectado del servidor'
         }).showToast();
-
-        setConnected(connected);
     }, [connected]);
 
     useEffect(() => {
@@ -30,12 +26,10 @@ export function SocketContextProvider({ children }: PropsWithChildren) {
                 text: 'No se puede conectar con el servidor'
             }).showToast();
         }
-
-        setError(error);
     }, [error]);
 
     return (
-        <SocketContext.Provider value={{ error: error_state, socket, connected: connected_state }}>
+        <SocketContext.Provider value={{ error, socket, connected }}>
             {children}
         </SocketContext.Provider >
     )

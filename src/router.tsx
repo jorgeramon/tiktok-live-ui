@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import { AuthLayout } from "./layouts/auth";
+import { RequestPageLayout } from "./layouts/request";
 import { HomePage } from "./pages/home";
 import { RequestPage } from "./pages/request";
 
@@ -9,7 +10,9 @@ export function Router() {
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path=":account_id" element={<AuthLayout />}>
-                    <Route index path="requests" element={<RequestPage />} />
+                    <Route path="requests" element={<RequestPageLayout />}>
+                        <Route index element={<RequestPage />} />
+                    </Route>
                 </Route>
             </Routes>
         </BrowserRouter>
