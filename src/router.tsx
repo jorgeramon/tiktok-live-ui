@@ -10,9 +10,7 @@ export function Router() {
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path=":account_id" element={<AuthLayout />}>
-                    <Route path="requests" element={<RequestPageLayout />}>
-                        <Route index element={<RequestPage />} />
-                    </Route>
+                    <Route path="requests" element={<RequestPageLayout><RequestPage /></RequestPageLayout>} />
                 </Route>
             </Routes>
         </BrowserRouter>

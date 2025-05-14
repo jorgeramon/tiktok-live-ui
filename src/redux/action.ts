@@ -4,3 +4,7 @@ export enum RequestsAction {
     UPDATE = 'requests.update',
     COMPLETE = 'requests.complete'
 }
+
+export enum StatusAction {
+    REPLACE = 'status.replace'
+}
