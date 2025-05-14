@@ -1,6 +1,6 @@
 import { useStatus } from '@/redux/hooks/status';
 
-export function Status() {
+export default function () {
   const { state: status } = useStatus();
 
   return (

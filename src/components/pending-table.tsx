@@ -1,14 +1,21 @@
 import { useCompleteRequestEvent } from '@/events/output/complete-request';
+import { useSelectRequestEvent } from '@/events/output/select-request';
 import { useRequests } from '@/redux/hooks/requests';
 import { Button, Stack, Table } from 'react-bootstrap';
 import ReactTimeAgo from 'react-time-ago';
 
-export function PendingTable() {
+export default function () {
   const { state: requests } = useRequests();
+
   const completeRequest = useCompleteRequestEvent();
+  const selectRequest = useSelectRequestEvent();
 
   function onComplete(request_id: string): void {
     completeRequest({ request_id });
+  }
+
+  function onSelect(request_id: string): void {
+    selectRequest({ request_id });
   }
 
   return (
@@ -38,6 +45,13 @@ export function PendingTable() {
               </td>
               <td>
                 <Stack direction="horizontal" gap={3}>
+                  <Button
+                    variant="warning"
+                    onClick={() => onSelect(request._id)}
+                  >
+                    <i className="bi bi-play"></i>
+                  </Button>
+
                   <Button
                     variant="success"
                     onClick={() => onComplete(request._id)}

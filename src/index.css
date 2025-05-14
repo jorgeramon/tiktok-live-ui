@@ -1,7 +1,9 @@
-.request-completed {
-  text-decoration: line-through !important;
-  color: red !important;
-  opacity: 0.5;
+.request-selected {
+  color: white !important;
+}
+
+.request-list-item {
+  color: white !important;
 }
 
 /* Sweet Alert Toasts */

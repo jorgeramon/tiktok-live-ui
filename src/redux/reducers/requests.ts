@@ -26,14 +26,37 @@ export function reducer(state: IRequest[], action: IAction): IRequest[] {
     }
 
     case RequestsAction.COMPLETE: {
-      const { _id, completed_at } = action.data as IRequest;
+      const { _id, current, completed, completed_at } = action.data as IRequest;
       const request: IRequest | undefined = state.find(
         (request) => request._id === _id
       );
 
       if (request) {
-        request.completed = true;
+        request.current = current;
+        request.completed = completed;
         request.completed_at = completed_at;
+      }
+
+      return [...state];
+    }
+
+    case RequestsAction.SELECT: {
+      const { _id, current } = action.data as IRequest;
+
+      const current_request: IRequest | undefined = state.find(
+        (request) => request.current
+      );
+
+      if (current_request) {
+        current_request.current = false;
+      }
+
+      const request: IRequest | undefined = state.find(
+        (request) => request._id === _id
+      );
+
+      if (request) {
+        request.current = current;
       }
 
       return [...state];

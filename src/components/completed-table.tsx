@@ -2,7 +2,7 @@ import { useRequests } from '@/redux/hooks/requests';
 import { Table } from 'react-bootstrap';
 import ReactTimeAgo from 'react-time-ago';
 
-export function CompletedTable() {
+export default function () {
   const { state: requests } = useRequests();
 
   return (
@@ -17,7 +17,7 @@ export function CompletedTable() {
       </thead>
       <tbody>
         {requests
-          .filter((request) => request.completed && request.completed_at)
+          .filter((request) => request.completed)
           .sort(
             (r1, r2) => r2.completed_at.getTime() - r1.completed_at.getTime()
           )

@@ -5,10 +5,10 @@ import { IRequest } from '@/interfaces/request';
 import { useContext } from 'react';
 import { useSocketEvent } from 'socket.io-react-hook';
 
-export function useRequestUpdated(account_id: string): IRequest | null {
+export function useRequestSelected(account_id: string): IRequest | null {
   const { socket } = useContext(SocketContext);
 
-  const event_key = InputSocketEvent.REQUEST_UPDATED.replace(
+  const event_key = InputSocketEvent.REQUEST_SELECTED.replace(
     '{account_id}',
     account_id
   );
