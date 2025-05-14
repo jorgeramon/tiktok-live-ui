@@ -10,9 +10,16 @@ export function RequestPage() {
     const get_status = useGetStatusEvent();
 
     useEffect(() => {
-        get_requests();
-        get_status();
-    }, []);
+        if (get_requests) {
+            get_requests();
+        }
+    }, [get_requests]);
+
+    useEffect(() => {
+        if (get_status) {
+            get_status();
+        }
+    }, [get_status]);
 
     return (
         <>
