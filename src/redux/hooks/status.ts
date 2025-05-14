@@ -12,7 +12,7 @@ export function useStatus() {
 
   useEffect(() => {
     if (get_status !== null) {
-      dispatch({ type: StatusAction.REPLACE, data: get_status.is_online });
+      dispatch({ type: StatusAction.REPLACE, data: get_status });
     }
   }, [get_status]);
 

@@ -1,5 +1,6 @@
 import CompletedTable from '@/components/completed-table';
 import PendingTable from '@/components/pending-table';
+import RequestSelected from '@/components/request-selected';
 import Status from '@/components/status';
 import SocketProvider from '@/contexts/socket';
 import { useGetRequestsEvent } from '@/events/output/get-requests';
@@ -28,6 +29,8 @@ function Page() {
   return (
     <Stack className="p-2">
       <Status />
+
+      <RequestSelected />
 
       <Stack className="mt-3">
         <h2 className="text-center">Pendientes</h2>

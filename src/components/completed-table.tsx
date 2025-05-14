@@ -19,7 +19,9 @@ export default function () {
         {requests
           .filter((request) => request.completed)
           .sort(
-            (r1, r2) => r2.completed_at.getTime() - r1.completed_at.getTime()
+            (r1, r2) =>
+              new Date(r2.completed_at).getTime() -
+              new Date(r1.completed_at).getTime()
           )
           .map((request) => (
             <tr key={request._id}>
@@ -27,7 +29,7 @@ export default function () {
               <td>{request.user_username}</td>
               <td>{request.user_nickname}</td>
               <td>
-                <ReactTimeAgo date={request.completed_at} />
+                <ReactTimeAgo date={new Date(request.completed_at)} />
               </td>
             </tr>
           ))}
