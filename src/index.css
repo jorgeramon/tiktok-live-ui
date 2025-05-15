@@ -1,9 +1,16 @@
+body {
+  background-color: transparent !important;
+}
+
 .request-selected {
   color: white !important;
 }
 
 .request-list-item {
   color: white !important;
+  font-weight: bold;
+  font-size: 25px !important;
+  border: 0 !important;
 }
 
 /* Sweet Alert Toasts */

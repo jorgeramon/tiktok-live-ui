@@ -1,5 +1,6 @@
 import { useCompleteRequestEvent } from '@/events/output/complete-request';
 import { useSelectRequestEvent } from '@/events/output/select-request';
+import { IRequest } from '@/interfaces/request';
 import { useRequests } from '@/redux/hooks/requests';
 import { Button, Stack, Table } from 'react-bootstrap';
 import ReactTimeAgo from 'react-time-ago';
@@ -22,6 +23,7 @@ export default function () {
     <Table>
       <thead>
         <tr>
+          <th>Lugar</th>
           <th>Petición</th>
           <th>Usuario</th>
           <th>Nickname</th>
@@ -37,8 +39,9 @@ export default function () {
               new Date(r1.requested_at).getTime() -
               new Date(r2.requested_at).getTime()
           )
-          .map((request) => (
+          .map((request: IRequest, index: number) => (
             <tr key={request._id}>
+              <td>{index + 1}</td>
               <td>{request.request}</td>
               <td>{request.user_username}</td>
               <td>{request.user_nickname}</td>
