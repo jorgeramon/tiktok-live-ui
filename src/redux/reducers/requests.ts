@@ -10,6 +10,12 @@ export function reducer(state: IRequest[], action: IAction): IRequest[] {
       return action.data as IRequest[];
 
     case RequestsAction.ADD:
+      const { _id } = action.data as IRequest;
+
+      if (state.some((request) => request._id === _id)) {
+        return state;
+      }
+
       return [...state, action.data as IRequest];
 
     case RequestsAction.UPDATE: {
