@@ -15,7 +15,10 @@ export default function () {
   return (
     <ListGroup variant="flush" className="bg-transparent">
       {!requests.filter((request) => !request.completed).length ? (
-        <ListGroup.Item as="li" className="request-list-item bg-transparent">
+        <ListGroup.Item
+          as="li"
+          className="fade request-list-item bg-transparent"
+        >
           No hay canciones pendientes
         </ListGroup.Item>
       ) : null}
