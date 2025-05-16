@@ -1,6 +1,4 @@
-import { IRequest } from '@/interfaces/request';
 import { useRequests } from '@/redux/hooks/requests';
-import { useEffect } from 'react';
 import { ListGroup } from 'react-bootstrap';
 
 export default function () {
@@ -14,7 +12,7 @@ export default function () {
         new Date(r2.requested_at).getTime()
     );
 
-  useEffect(() => {
+  /*useEffect(() => {
     setTimeout(() => {
       if ($requests.length > 0) {
         const element = document.getElementById(
@@ -30,7 +28,7 @@ export default function () {
         }
       }
     });
-  }, [requests]);
+  }, [requests]);*/
 
   return (
     <>
