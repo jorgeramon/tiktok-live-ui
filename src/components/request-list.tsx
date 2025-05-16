@@ -21,13 +21,13 @@ export default function () {
           $requests[$requests.length - 1]._id
         );
 
-        window.scrollTo({
-          top: element?.offsetTop,
-        });
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
 
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-        }, 5000);
+          setTimeout(() => {
+            window.scrollTo(0, 0);
+          }, 5000);
+        }
       }
     });
   }, [requests]);
