@@ -5,6 +5,8 @@ import { RequestsProvider } from '@/redux/contexts/requests';
 import { useEffect } from 'react';
 import { Stack } from 'react-bootstrap';
 
+import '@/view.css';
+
 function Page() {
   const get_requests = useGetRequestsEvent();
 

@@ -1,9 +1,16 @@
 import { IRequest } from '@/interfaces/request';
 import { useRequests } from '@/redux/hooks/requests';
+import { useEffect } from 'react';
 import { ListGroup } from 'react-bootstrap';
 
 export default function () {
   const { state: requests } = useRequests();
+
+  useEffect(() => {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    });
+  }, [requests]);
 
   return (
     <ListGroup variant="flush" className="bg-transparent">
