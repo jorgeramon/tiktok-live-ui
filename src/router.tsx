@@ -4,7 +4,6 @@ import { createBrowserRouter } from 'react-router';
 const api_url: string = import.meta.env.VITE_API;
 
 async function lazy_loading(component: string) {
-  /* @vite-ignore */
   const module = await import(component);
   return { Component: module.default };
 }
