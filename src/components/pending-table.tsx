@@ -1,5 +1,4 @@
 import { useCompleteRequestEvent } from '@/events/output/complete-request';
-import { useSelectRequestEvent } from '@/events/output/select-request';
 import { IRequest } from '@/interfaces/request';
 import { useRequests } from '@/redux/hooks/requests';
 import { Button, Stack, Table } from 'react-bootstrap';
@@ -9,14 +8,9 @@ export default function () {
   const { state: requests } = useRequests();
 
   const completeRequest = useCompleteRequestEvent();
-  const selectRequest = useSelectRequestEvent();
 
   function onComplete(request_id: string): void {
     completeRequest({ request_id });
-  }
-
-  function onSelect(request_id: string): void {
-    selectRequest({ request_id });
   }
 
   return (
@@ -28,7 +22,7 @@ export default function () {
           <th>Usuario</th>
           <th>Nickname</th>
           <th>Antigüedad</th>
-          <th>Acciones</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -50,14 +44,6 @@ export default function () {
               </td>
               <td>
                 <Stack direction="horizontal" gap={3}>
-                  {!request.current ? (
-                    <Button
-                      variant="warning"
-                      onClick={() => onSelect(request._id)}
-                    >
-                      <i className="bi bi-play"></i>
-                    </Button>
-                  ) : null}
                   <Button
                     variant="success"
                     onClick={() => onComplete(request._id)}

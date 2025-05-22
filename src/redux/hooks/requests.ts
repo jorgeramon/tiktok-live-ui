@@ -1,7 +1,5 @@
-import { useGetRequests } from '@/events/input/get-requests';
 import { useRequestCompleted } from '@/events/input/request-completed';
 import { useRequestCreated } from '@/events/input/request-created';
-import { useRequestSelected } from '@/events/input/request-selected';
 import { useRequestUpdated } from '@/events/input/request-updated';
 import { RequestsAction } from '@/redux/action';
 import { RequestsContext } from '@/redux/contexts/requests';
@@ -12,17 +10,9 @@ export function useRequests() {
   const { account_id } = useParams();
   const { state, dispatch } = useContext(RequestsContext);
 
-  const get_requests = useGetRequests(account_id!);
   const request_created = useRequestCreated(account_id!);
   const request_updated = useRequestUpdated(account_id!);
   const request_completed = useRequestCompleted(account_id!);
-  const request_selected = useRequestSelected(account_id!);
-
-  useEffect(() => {
-    if (get_requests !== null) {
-      dispatch({ type: RequestsAction.REPLACE, data: get_requests });
-    }
-  }, [get_requests]);
 
   useEffect(() => {
     if (request_created !== null) {
@@ -41,12 +31,6 @@ export function useRequests() {
       dispatch({ type: RequestsAction.COMPLETE, data: request_completed });
     }
   }, [request_completed]);
-
-  useEffect(() => {
-    if (request_selected !== null) {
-      dispatch({ type: RequestsAction.SELECT, data: request_selected });
-    }
-  }, [request_selected]);
 
   return { state, dispatch };
 }

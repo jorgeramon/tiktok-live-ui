@@ -3,7 +3,6 @@ export enum RequestsAction {
   ADD = 'requests.add',
   UPDATE = 'requests.update',
   COMPLETE = 'requests.complete',
-  SELECT = 'requests.select',
 }
 
 export enum StatusAction {

@@ -1,3 +1,4 @@
+import { IRequest } from '@/interfaces/request';
 import { useRequests } from '@/redux/hooks/requests';
 import { ListGroup } from 'react-bootstrap';
 
@@ -11,24 +12,6 @@ export default function () {
         new Date(r1.requested_at).getTime() -
         new Date(r2.requested_at).getTime()
     );
-
-  /*useEffect(() => {
-    setTimeout(() => {
-      if ($requests.length > 0) {
-        const element = document.getElementById(
-          $requests[$requests.length - 1]._id
-        );
-
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-
-          setTimeout(() => {
-            window.scrollTo(0, 0);
-          }, 5000);
-        }
-      }
-    });
-  }, [requests]);*/
 
   return (
     <>
