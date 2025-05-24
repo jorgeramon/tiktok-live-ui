@@ -1,12 +1,8 @@
 import { IRequest } from '@/interfaces/request';
+import React from 'react';
 import { createBrowserRouter } from 'react-router';
 
 const api_url: string = import.meta.env.VITE_API;
-
-async function lazy_loading(component: string) {
-  const module = await import(component);
-  return { Component: module.default };
-}
 
 async function load_requests(account_id: string): Promise<IRequest[]> {
   try {
@@ -31,11 +27,13 @@ async function load_status(account_id: string): Promise<boolean> {
 export default createBrowserRouter([
   {
     path: '/',
-    lazy: () => lazy_loading('./pages/home.js'),
+    Component: React.lazy(() => import('./pages/home')),
+    HydrateFallback: () => null,
   },
   {
     path: '/:account_id/requests',
-    lazy: () => lazy_loading('./pages/request'),
+    Component: React.lazy(() => import('./pages/request')),
+    HydrateFallback: () => null,
     loader: async ({ params }) => {
       const [requests, status] = await Promise.all([
         load_requests(params.account_id!),
@@ -47,7 +45,8 @@ export default createBrowserRouter([
   },
   {
     path: '/:account_id/view',
-    lazy: () => lazy_loading('./pages/view'),
+    Component: React.lazy(() => import('./pages/view')),
+    HydrateFallback: () => null,
     loader: async ({ params }) => {
       const requests = await load_requests(params.account_id!);
       return { requests };
