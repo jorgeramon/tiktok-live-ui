@@ -31,11 +31,11 @@ async function load_status(account_id: string): Promise<boolean> {
 export default createBrowserRouter([
   {
     path: '/',
-    lazy: () => lazy_loading('@/pages/home'),
+    lazy: () => lazy_loading('./pages/home.js'),
   },
   {
     path: '/:account_id/requests',
-    lazy: () => lazy_loading('@/pages/request'),
+    lazy: () => lazy_loading('./pages/request'),
     loader: async ({ params }) => {
       const [requests, status] = await Promise.all([
         load_requests(params.account_id!),
@@ -47,7 +47,7 @@ export default createBrowserRouter([
   },
   {
     path: '/:account_id/view',
-    lazy: () => lazy_loading('@/pages/view'),
+    lazy: () => lazy_loading('./pages/view'),
     loader: async ({ params }) => {
       const requests = await load_requests(params.account_id!);
       return { requests };
