@@ -49,7 +49,7 @@ export default createBrowserRouter([
     HydrateFallback: () => null,
     loader: async ({ params }) => {
       const requests = await load_requests(params.account_id!);
-      return { requests };
+      return { requests, disable_toasts: true };
     },
   },
 ]);
