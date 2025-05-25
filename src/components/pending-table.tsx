@@ -10,6 +10,7 @@ export default function () {
   const completeRequest = useCompleteRequestEvent();
 
   function onComplete(request_id: string): void {
+    console.log(`Completing request: ${request_id}`);
     completeRequest({ request_id });
   }
 
