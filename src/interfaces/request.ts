@@ -7,7 +7,6 @@ export interface IRequest {
   user_picture: string;
   request: string;
   completed: boolean;
-  current: boolean;
   requested_at: string;
   completed_at: string;
 }
