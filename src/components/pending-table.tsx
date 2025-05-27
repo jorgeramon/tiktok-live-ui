@@ -1,17 +1,18 @@
-import { useCompleteRequestEvent } from '@/events/output/complete-request';
+import { completeRequest } from '@/api';
 import { IRequest } from '@/interfaces/request';
+import { RequestsAction } from '@/redux/action';
 import { useRequests } from '@/redux/hooks/requests';
 import { Button, Stack, Table } from 'react-bootstrap';
+import { useParams } from 'react-router';
 import ReactTimeAgo from 'react-time-ago';
 
 export default function () {
-  const { state: requests } = useRequests();
+  const { account_id } = useParams();
+  const { state: requests, dispatch } = useRequests();
 
-  const completeRequest = useCompleteRequestEvent();
-
-  function onComplete(request_id: string): void {
-    console.log(`Completing request: ${request_id}`);
-    completeRequest({ request_id });
+  async function onComplete(request_id: string): Promise<void> {
+    const request = await completeRequest(account_id!, request_id);
+    dispatch({ type: RequestsAction.UPDATE_ONE, data: request });
   }
 
   return (

@@ -20,13 +20,13 @@ function Page() {
 
   useEffect(() => {
     if (typeof requests !== 'undefined' && requests !== null) {
-      dispatch_requests({ type: RequestsAction.REPLACE, data: requests });
+      dispatch_requests({ type: RequestsAction.REPLACE_ALL, data: requests });
     }
   }, [requests]);
 
   useEffect(() => {
     if (typeof status !== 'undefined' && status !== null) {
-      dispatch_status({ type: StatusAction.REPLACE, data: status });
+      dispatch_status({ type: StatusAction.REPLACE_ALL, data: status });
     }
   }, [status]);
 

@@ -1,10 +1,9 @@
 export enum RequestsAction {
-  REPLACE = 'requests.replace',
+  REPLACE_ALL = 'requests.replace-all',
   ADD = 'requests.add',
-  UPDATE = 'requests.update',
-  COMPLETE = 'requests.complete',
+  UPDATE_ONE = 'requests.update-one',
 }
 
 export enum StatusAction {
-  REPLACE = 'status.replace',
+  REPLACE_ALL = 'status.replace-all',
 }

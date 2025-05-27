@@ -6,7 +6,7 @@ export const initial_state: IRequest[] = [];
 
 export function reducer(state: IRequest[], action: IAction): IRequest[] {
   switch (action.type) {
-    case RequestsAction.REPLACE:
+    case RequestsAction.REPLACE_ALL:
       return action.data as IRequest[];
 
     case RequestsAction.ADD:
@@ -18,28 +18,14 @@ export function reducer(state: IRequest[], action: IAction): IRequest[] {
 
       return [...state, action.data as IRequest];
 
-    case RequestsAction.UPDATE: {
-      const { _id, request: new_request } = action.data as IRequest;
+    case RequestsAction.UPDATE_ONE: {
+      const { _id, ...new_request } = action.data as IRequest;
       const request: IRequest | undefined = state.find(
         (request) => request._id === _id
       );
 
       if (request) {
-        request.request = new_request;
-      }
-
-      return [...state];
-    }
-
-    case RequestsAction.COMPLETE: {
-      const { _id, completed, completed_at } = action.data as IRequest;
-      const request: IRequest | undefined = state.find(
-        (request) => request._id === _id
-      );
-
-      if (request) {
-        request.completed = completed;
-        request.completed_at = completed_at;
+        Object.assign(request, new_request);
       }
 
       return [...state];
