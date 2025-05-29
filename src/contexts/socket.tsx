@@ -12,7 +12,7 @@ export const SocketContext = createContext<ISocketContext>({
 
 function Provider({ children }: PropsWithChildren) {
   const { account_id } = useParams();
-  const { disable_toasts } = useLoaderData();
+  const { disable_toasts } = useLoaderData() ?? { disable_toasts: false };
   const { error, socket, connected } = useSocket(import.meta.env.VITE_WS, {
     auth: { account_id },
   });

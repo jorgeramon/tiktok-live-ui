@@ -4,16 +4,15 @@ body {
 
 .request-list-item {
   color: white !important;
-  font-size: 25px !important;
   border: 0 !important;
   text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000,
     -1px -1px #000, 1px -1px #000, -1px 1px #000;
 }
 
 .request-list-item img {
-  width: 65px;
+  width: 100px;
 }
 
-.request-list-item h3 {
+.request-list-item h2 {
   font-weight: bold;
 }

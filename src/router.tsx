@@ -26,8 +26,12 @@ export default createBrowserRouter([
     Component: React.lazy(() => import('./pages/view')),
     HydrateFallback: () => null,
     loader: async ({ params }) => {
-      const requests = await getRequests(params.account_id!);
-      return { requests, disable_toasts: true };
+      const [requests, status] = await Promise.all([
+        getRequests(params.account_id!),
+        getStatus(params.account_id!),
+      ]);
+
+      return { requests, status, disable_toasts: true };
     },
   },
 ]);

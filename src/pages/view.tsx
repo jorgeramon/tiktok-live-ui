@@ -1,23 +1,24 @@
 import RequestList from '@/components/request-list';
 import SocketProvider from '@/contexts/socket';
+import { RequestsAction } from '@/redux/action';
 import { RequestsProvider } from '@/redux/contexts/requests';
+import { StatusProvider } from '@/redux/contexts/status';
+import { useRequests } from '@/redux/hooks/requests';
+import { useStatus } from '@/redux/hooks/status';
+import '@/view.css';
+import 'animate.css';
+import { useEffect } from 'react';
 import { Stack } from 'react-bootstrap';
 
-import { RequestsAction } from '@/redux/action';
-import { useRequests } from '@/redux/hooks/requests';
-import '@/view.css';
-import { useEffect } from 'react';
-import { useLoaderData } from 'react-router';
-
 function Page() {
-  const { requests } = useLoaderData();
-  const { dispatch: dispatch_requests } = useRequests();
+  const { state: status } = useStatus();
+  const { dispatch } = useRequests();
 
   useEffect(() => {
-    if (typeof requests !== 'undefined' && requests !== null) {
-      dispatch_requests({ type: RequestsAction.REPLACE_ALL, data: requests });
+    if (typeof status !== 'undefined' && status !== null && !status) {
+      dispatch({ type: RequestsAction.REPLACE_ALL, data: [] });
     }
-  }, [requests]);
+  }, [status]);
 
   return (
     <Stack>
@@ -29,7 +30,9 @@ function Page() {
 export default () => (
   <SocketProvider>
     <RequestsProvider>
-      <Page />
+      <StatusProvider>
+        <Page />
+      </StatusProvider>
     </RequestsProvider>
   </SocketProvider>
 );

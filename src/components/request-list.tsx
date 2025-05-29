@@ -16,24 +16,19 @@ export default function () {
   return (
     <>
       <ListGroup variant="flush" className="bg-transparent">
-        {!$requests.length ? (
-          <ListGroup.Item as="li" className="request-list-item bg-transparent">
-            No hay canciones pendientes
-          </ListGroup.Item>
-        ) : null}
         {$requests.map(
           ({ _id, request, user_nickname, user_picture }: IRequest) => (
             <ListGroup.Item
               id={_id}
               key={_id}
               as="li"
-              className="request-list-item bg-transparent"
+              className="request-list-item bg-transparent animate__fadeInRightBig"
             >
               <Stack direction="horizontal" gap={2}>
                 <Image src={user_picture} roundedCircle />
                 <Stack className="ms-3 justify-content-center">
-                  <h3>{user_nickname}</h3>
-                  <h4>{request}</h4>
+                  <h2>{user_nickname}</h2>
+                  <h3>{request}</h3>
                 </Stack>
               </Stack>
             </ListGroup.Item>
