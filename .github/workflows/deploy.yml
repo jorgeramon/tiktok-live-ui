@@ -15,10 +15,4 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           script: |
-            cd tiktok-live-ui
-            git pull origin master
-            yarn install
-            cp ${{ secrets.ENV_FOLDER }}/tiktok-live-ui .env
-            rm -rf ${{ secrets.DEPLOY_FOLDER }}/tiktok-live-ui
-            yarn build
-            cp -r dist ${{ secrets.DEPLOY_FOLDER }}/tiktok-live-ui
+            sh ${{ secrets.DEPLOY_SCRIPTS }}/tiktok-live-ui.sh
