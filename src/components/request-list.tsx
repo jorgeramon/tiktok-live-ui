@@ -1,6 +1,6 @@
 import { IRequest } from '@/interfaces/request';
 import { useRequests } from '@/redux/hooks/requests';
-import { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Image, ListGroup, Stack } from 'react-bootstrap';
 
 function isElementVisible(el: HTMLElement) {
@@ -9,15 +9,23 @@ function isElementVisible(el: HTMLElement) {
   return top >= 0 && left >= 0 && bottom <= innerHeight && right <= innerWidth;
 }
 
-function scrollAnimation(request: IRequest | null) {
+function scrollAnimation(
+  request: IRequest | null,
+  timeoutRef: React.RefObject<number | null>
+) {
   if (request !== null) {
     const element = document.getElementById(request._id);
 
     if (element !== null && !isElementVisible(element)) {
       element.scrollIntoView({ behavior: 'smooth' });
 
-      setTimeout(() => {
+      if (timeoutRef.current !== null) {
+        clearTimeout(timeoutRef.current);
+      }
+
+      timeoutRef.current = setTimeout(() => {
         window.scrollTo({ behavior: 'smooth', top: 0 });
+        timeoutRef.current = null;
       }, 4000);
     }
   }
@@ -25,6 +33,7 @@ function scrollAnimation(request: IRequest | null) {
 
 export default function () {
   const { state: requests, last_added, last_updated } = useRequests();
+  const timeoutRef = useRef<number | null>(null);
 
   const $requests = requests
     .filter((request) => !request.completed)
@@ -35,11 +44,11 @@ export default function () {
     );
 
   useEffect(() => {
-    scrollAnimation(last_added);
+    scrollAnimation(last_added, timeoutRef);
   }, [last_added]);
 
   useEffect(() => {
-    scrollAnimation(last_updated);
+    scrollAnimation(last_updated, timeoutRef);
   }, [last_updated]);
 
   return (
@@ -54,16 +63,22 @@ export default function () {
               id={_id}
               key={_id}
               as="li"
-              className={`request-list-item ${
-                last_added?._id === _id ? 'animation_highlight' : ''
-              } ${last_updated?._id === _id ? 'animation_highlight' : ''}`}
+              className={`request ${
+                last_added?._id === _id || last_updated?._id === _id
+                  ? 'animation_highlight'
+                  : ''
+              }`}
             >
               <Stack direction="horizontal" gap={3}>
-                <h2>{index + 1}.</h2>
-                <Image src={user_picture} roundedCircle />
+                <span className="request-index">{index + 1}.</span>
+                <Image
+                  className="user-picture"
+                  src={user_picture}
+                  roundedCircle
+                />
                 <Stack className="ms-3 justify-content-center">
-                  <h2>{user_nickname}</h2>
-                  <h3>{request}</h3>
+                  <span className="user-nickname">{user_nickname}</span>
+                  <span className="user-request">{request}</span>
                 </Stack>
               </Stack>
             </ListGroup.Item>

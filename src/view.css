@@ -6,25 +6,45 @@ html {
   scroll-behavior: smooth;
 }
 
-.request-list-item {
-  color: white !important;
-  border: 0 !important;
+.request {
+  color: white;
+  border: 0;
+  background-color: transparent;
   text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000,
     -1px -1px #000, 1px -1px #000, -1px 1px #000;
 }
 
-.request-list-item img {
-  width: 80px;
+.user-picture {
+  width: 70px;
 }
 
-.request-list-item h2 {
+.user-nickname {
+  font-size: 1.5rem;
+  font-weight: bold;
+  max-width: 70vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-request {
+  font-size: 1.4rem;
+  font-weight: bold;
+  max-width: 70vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.request-index {
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
 .animation_highlight {
   animation-name: highlight;
-  animation-duration: 400ms;
-  animation-iteration-count: 9;
+  animation-duration: 500ms;
+  animation-iteration-count: 7;
   animation-direction: alternate-reverse;
   animation-timing-function: ease;
 }
@@ -33,7 +53,7 @@ html {
   from {
   }
   to {
-    background-color: #fff59d;
+    background-color: rgb(255, 238, 88, 0.5);
   }
 }
 
