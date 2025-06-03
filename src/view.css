@@ -2,6 +2,10 @@ body {
   overflow: hidden;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .request-list-item {
   color: white !important;
   border: 0 !important;
@@ -10,9 +14,30 @@ body {
 }
 
 .request-list-item img {
-  width: 100px;
+  width: 80px;
 }
 
 .request-list-item h2 {
   font-weight: bold;
+}
+
+.animation_highlight {
+  animation-name: highlight;
+  animation-duration: 400ms;
+  animation-iteration-count: 9;
+  animation-direction: alternate-reverse;
+  animation-timing-function: ease;
+}
+
+@keyframes highlight {
+  from {
+  }
+  to {
+    background-color: #fff59d;
+  }
+}
+
+.blank-space {
+  height: 100vh;
+  background: transparent;
 }
