@@ -9,7 +9,9 @@ html {
 .request {
   color: white;
   border: 0;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: 5px !important;
+  border-radius: 10px !important;
   text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000,
     -1px -1px #000, 1px -1px #000, -1px 1px #000;
 }
