@@ -14,13 +14,15 @@ function scrollAnimation(
   timeoutRef: React.RefObject<number | null>
 ) {
   if (request !== null) {
-    const audio = document.getElementById('sound_effect') as HTMLAudioElement;
-
-    if (audio != null) {
-      audio.play();
-    }
-
     const element = document.getElementById(request._id);
+
+    if (element !== null) {
+      const audio = document.getElementById('sound_effect') as HTMLAudioElement;
+
+      if (audio != null) {
+        audio.play();
+      }
+    }
 
     if (element !== null && !isElementVisible(element)) {
       element.scrollIntoView({ behavior: 'smooth' });
