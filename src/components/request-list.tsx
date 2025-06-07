@@ -14,6 +14,12 @@ function scrollAnimation(
   timeoutRef: React.RefObject<number | null>
 ) {
   if (request !== null) {
+    const audio = document.getElementById('sound_effect') as HTMLAudioElement;
+
+    if (audio != null) {
+      audio.play();
+    }
+
     const element = document.getElementById(request._id);
 
     if (element !== null && !isElementVisible(element)) {
@@ -53,6 +59,9 @@ export default function () {
 
   return (
     <>
+      <audio id="sound_effect">
+        <source src="/new_request.mp3" type="audio/mp3" />
+      </audio>
       <ListGroup variant="flush" className="bg-transparent">
         {$requests.map(
           (
